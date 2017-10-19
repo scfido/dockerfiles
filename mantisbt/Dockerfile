@@ -7,7 +7,8 @@ LABEL maintainer="scfido <scfido@gmail.com>"
 
 RUN a2enmod rewrite
 
-ADD http://mirrors.163.com/.help/sources.list.jessie /etc/apt/sources.list
+#如果apt-get访问太慢，可以使用163的国内镜像站。
+#ADD http://mirrors.163.com/.help/sources.list.jessie /etc/apt/sources.list
 
 RUN set -xe \
     && apt-get update \

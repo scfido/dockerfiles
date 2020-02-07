@@ -1,5 +1,5 @@
 mantisbt:
-  image: xunmei/mantisbt
+  image: xunmei/mantisbt:2.23.0
   ports:
     - "8989:80"
   links:

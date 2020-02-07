@@ -2,7 +2,7 @@
 # Dockerfile for mantisbt
 #
 
-FROM php:7.1.10-apache
+FROM php:7.4.2-apache
 LABEL maintainer="scfido <scfido@gmail.com>"
 
 RUN a2enmod rewrite
@@ -23,8 +23,8 @@ RUN set -xe \
     && rm -rf /var/lib/apt/lists/*
 
 
-ENV MANTIS_VER 2.7.0
-ENV MANTIS_MD5 bd84a7f03c77a68cc63b15faea8c1d78
+ENV MANTIS_VER 2.23.0
+ENV MANTIS_MD5 b1c8889709262fee026bdf5790ffab7d
 ENV MANTIS_URL https://ncu.dl.sourceforge.net/project/mantisbt/mantis-stable/${MANTIS_VER}/mantisbt-${MANTIS_VER}.tar.gz
 ENV MANTIS_FILE mantisbt.tar.gz
 

@@ -31,7 +31,7 @@ RUN set -xe \
     && rm -rf /var/lib/apt/lists/*
 
 ENV MANTIS_VER 2.24.0
-ENV MANTIS_SHA1 5e55550bbb48f1af522c638ea0f90eccb1023304
+ENV MANTIS_SHA1 b1836f4c0b8ae686d996541ee8741fd61ad6fafe
 ENV MANTIS_URL https://nchc.dl.sourceforge.net/project/mantisbt/mantis-stable/${MANTIS_VER}/mantisbt-${MANTIS_VER}.tar.gz
 ENV MANTIS_FILE mantisbt.tar.gz
 ENV MANTIS_TIMEZONE Asia/Shanghai

@@ -9,3 +9,7 @@ Gitlab runner CI/DI环境
 - helm v3.1.2
 - kubectl v1.17.4
 - docker
+
+** 注意 **
+
+该镜像基于 `../dotnetcoresdk-node`，build前本机要有`dotnetcoresdk-node`

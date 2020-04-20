@@ -30,7 +30,7 @@ RUN set -xe \
     && docker-php-ext-install -j$(nproc) gd mbstring mysqli pgsql soap \
     && rm -rf /var/lib/apt/lists/*
 
-ENV MANTIS_VER 2.23.0
+ENV MANTIS_VER 2.24.0
 ENV MANTIS_SHA1 287179645e87b1ea603649e9e1fa17ca20f380d4
 ENV MANTIS_URL https://nchc.dl.sourceforge.net/project/mantisbt/mantis-stable/${MANTIS_VER}/mantisbt-${MANTIS_VER}.tar.gz
 ENV MANTIS_FILE mantisbt.tar.gz

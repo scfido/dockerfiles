@@ -2,14 +2,14 @@
 
 Gitlab runner CI/DI环境
 
-- alpine v3.11
-- dotnet core skd v3.1.201 
+- alpine v3.12
+- dotnet sdk v5.0.101 
 - power shell v7.0.0
-- nodejs v12.16.1
+- nodejs v12.18.4
 - helm v3.1.2
 - kubectl v1.17.4
-- docker
+- docker v19.03.8
 
 ** 注意 **
 
-该镜像基于 `../dotnetcoresdk-node`，build前本机要有`dotnetcoresdk-node`
+该镜像基于 `../dotnetsdk-node`，build前本机要有`dotnetsdk-node`

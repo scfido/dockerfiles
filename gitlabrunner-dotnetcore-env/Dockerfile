@@ -1,4 +1,4 @@
-FROM dotnetcoresdk-node
+FROM dotnetsdk-node:1.0.1
 
 LABEL Author="fuyun <scfido@gmail.com>"
 

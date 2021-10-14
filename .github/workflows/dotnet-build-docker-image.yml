@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: dotnet build image CI
 
 on:
   push:
@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file dotnetcoresdk-node/Dockerfile --tag dotnetcoresdk-node:latest
+      run: docker build . --file dotnet-build-env/Dockerfile --tag dotnet-build-env:latest

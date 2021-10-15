@@ -32,8 +32,8 @@ jobs:
         # Use Docker `latest` tag convention
         [ "$VERSION" == "master" ] && VERSION=latest
 
-        export IMAGE_ID= $IMAGE_ID
-        export IMAGE_VERSION= $VERSION
+        export IMAGE_ID=$IMAGE_ID
+        export IMAGE_VERSION=$VERSION
 
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION

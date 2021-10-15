@@ -32,13 +32,25 @@ jobs:
         # Use Docker `latest` tag convention
         [ "$VERSION" == "master" ] && VERSION=latest
 
+        export IMAGE_ID= $IMAGE_ID
+        export IMAGE_VERSION= $VERSION
+
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
     - uses: actions/checkout@master
 
       # 构建镜像，指定镜像名
     - name: Build the Docker image
-      run: docker build ./$IMAGE_NAME --tag $IMAGE_ID
+      run: |
+        echo IMAGE_ID=$IMAGE_ID
+        echo VERSION=$IMAGE_VERSION
+        echo IMAGE_ID=${env.IMAGE_ID}
+        echo IMAGE_ID=${{env.IMAGE_ID}}
+        echo IMAGE_ID=${{env.IMAGE_ID}}
+        echo IMAGE_ID=${{env.IMAGE_ID}}
+        echo IMAGE_ID=${{env.IMAGE_ID}}
+        echo IMAGE_ID=${{env.IMAGE_ID}}
+        docker build ./$IMAGE_NAME --tag $IMAGE_ID
     
     - name: Log in to registry
       # This is where you will update the PAT to GITHUB_TOKEN

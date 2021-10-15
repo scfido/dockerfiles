@@ -11,22 +11,15 @@ env:
   IMAGE_NAME: dotnet-build-env
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
-      # 构建镜像，指定镜像名
-    - name: Build the Docker image
-      run: docker build ./dotnet-build-env --tag $IMAGE_NAME
-      # 发布镜像
-    - name: Push image
+    - name: Initialization
       run: |
         # 拼接镜像 id，这个镜像 id 就是在使用 docker 镜像时 pull 后面的名字。
-        IMAGE_ID=scfido/$IMAGE_NAME
-
+        IMAGE_ID: ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+        
         # 将所有的大写字母转为小写
         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
@@ -41,6 +34,19 @@ jobs:
 
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
+    - uses: actions/checkout@master
+
+      # 构建镜像，指定镜像名
+    - name: Build the Docker image
+      run: docker build ./$IMAGE_NAME --tag $IMAGE_ID
+    
+    - name: Log in to registry
+      # This is where you will update the PAT to GITHUB_TOKEN
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+    
+    # 发布镜像
+    - name: Push image
+      run: |
         # 设置镜像 id 和版本号
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
         # 进行 push

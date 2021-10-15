@@ -44,11 +44,6 @@ jobs:
       run: |
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$IMAGE_VERSION
-        echo IMAGE_ID=${env.IMAGE_ID}
-        echo IMAGE_ID=${{env.IMAGE_ID}}
-        echo IMAGE_ID=${{env.IMAGE_ID}}
-        echo IMAGE_ID=${{env.IMAGE_ID}}
-        echo IMAGE_ID=${{env.IMAGE_ID}}
         echo IMAGE_ID=${{env.IMAGE_ID}}
         docker build ./$IMAGE_NAME --tag $IMAGE_ID
     

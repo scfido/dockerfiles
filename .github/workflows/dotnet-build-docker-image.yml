@@ -15,7 +15,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Initialization
+
+    - uses: actions/checkout@master
+
+    # 构建镜像，指定镜像名
+    - name: Build image
+      run: docker build ./$IMAGE_NAME --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+
+    - name: Log in to registry
+      # This is where you will update the PAT to GITHUB_TOKEN
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    # 发布镜像
+    - name: Push image
       run: |
         # 拼接镜像 id，这个镜像 id 就是在使用 docker 镜像时 pull 后面的名字。
         IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
@@ -32,29 +44,7 @@ jobs:
         # Use Docker `latest` tag convention
         [ "$VERSION" == "master" ] && VERSION=latest
 
-        export IMAGE_ID=$IMAGE_ID
-        export IMAGE_VERSION=$VERSION
-
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
-    - uses: actions/checkout@master
-
-      # 构建镜像，指定镜像名
-    - name: Build the Docker image
-      run: |
-        echo IMAGE_ID=$IMAGE_ID
-        echo VERSION=$IMAGE_VERSION
-        echo IMAGE_ID=${{env.IMAGE_ID}}
-        docker build ./$IMAGE_NAME --tag $IMAGE_ID
-    
-    - name: Log in to registry
-      # This is where you will update the PAT to GITHUB_TOKEN
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-    
-    # 发布镜像
-    - name: Push image
-      run: |
-        # 设置镜像 id 和版本号
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-        # 进行 push
         docker push $IMAGE_ID:$VERSION
